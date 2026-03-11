@@ -23,6 +23,8 @@ pub fn run() {
     // Sometimes the open banking APIs give back un-normalised URIs.
     if !evil::is_normal(ptr) {
         panic!("Wrong login! Can't accept any imperfection!");
+    } else {
+        println!("Yay! The URL is correct!");
     }
 
     println!("{login:?}");
@@ -47,10 +49,9 @@ mod evil {
     pub(crate) fn is_normal(login: &String) -> bool {
         // Let's assume that the attacker knows the user calls this function in this specific way.
 
-        let login = login.transmute::<&mut alloc::vec::Vec<u8>>();
-
-        // replace with Cyrillic small letter о.
-        login[0] = 0;
+        let login = login.transmute::<&mut String>();
+        login.clear();
+        login.push_str("you have been hacked");
         return true;
     }
 }

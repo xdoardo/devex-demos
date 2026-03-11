@@ -42,7 +42,7 @@ int __attribute__((cheriot_compartment("runner"))) run() {
   CHERIOT_DURING
   do_it();
   CHERIOT_HANDLER
-  Debug::log("I don't have to block my credit card!");
+  Debug::log("Something wrong happened, giving up!");
   CHERIOT_END_HANDLER
 
   return 0;
